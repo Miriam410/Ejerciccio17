@@ -13,35 +13,46 @@ namespace Ejerciccio17
             /* 17. Solicite el ingreso de dos nùmeros al usuario y presente la suma, 
             la resta, la multiplicación, la división, el resto, el primer nÚmero elevado
             a la potencia del segundo. */
-            double numero1;
-            double numero2;
-            try
+            string numero1;
+            double Salida1;
+            string numero2;
+            double Salida2;
+            bool Flag = false;
+
+            do
             {
                 Console.WriteLine("Por favor, ingrese 2 némeros");
-                numero1 = Convert.ToSingle(Console.ReadLine());
-                numero2 = Convert.ToSingle(Console.ReadLine());
-
-                double suma = numero1 + numero2;
-                double resta = numero1 - numero2;
-                double multiplicacion = numero1 * numero2;
-                double division = numero1/numero2;
-                double resto = numero1 % numero2;
-                double Potencia = Math.Pow(numero1, numero2);
-                Console.WriteLine(
-                   $"La suma dió: {suma} \r\n" + $"La resta dió: {resta} \r\n" +
-                   $"La multipliación dió: {multiplicacion} \r\n" +
-                   $"La división dió: {division} \r\n" + $"El resto dió: {resto} \r\n" +
-                   $"La potencia es: {Potencia} \r\n");
-            }
-            catch (DivideByZeroException e)
-            {
-                Console.WriteLine("No se puede dividir por 0", e);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Hay un error en el ingreso",ex);
-            }
-            Console.WriteLine("Presione una tecla para salir");
+                numero1 = Console.ReadLine();
+                numero2 = Console.ReadLine();
+                if (!double.TryParse(numero1, out Salida1))
+                {
+                    Console.WriteLine("Ingrese un valor numérico");
+                }
+                if (!double.TryParse(numero2, out Salida2))
+                {
+                    Console.WriteLine("Ingrese un valor numérico");
+                }
+                else if (Salida2 == 0)
+                {
+                    Console.WriteLine("No puede ingresar un cero");
+                }
+                else
+                {
+                    Flag = true;
+                    double suma = Salida1+ Salida2;
+                    double resta = Salida1 - Salida2;
+                    double multiplicacion = Salida1 * Salida2;
+                    double division = Salida1 / Salida2;
+                    double resto = Salida1 % Salida2;
+                    double Potencia = Math.Pow(Salida1,Salida2);
+                    Console.WriteLine(
+                       $"La suma dió: {suma} \r\n" + $"La resta dió: {resta} \r\n" +
+                       $"La multipliación dió: {multiplicacion} \r\n" +
+                       $"La división dió: {division} \r\n" + $"El resto dió: {resto} \r\n" +
+                       $"La potencia es: {Potencia} \r\n");
+                    Console.WriteLine("Presione una tecla para salir");
+                }
+            } while (Flag==false);
             Console.ReadKey();
         }
     }
